@@ -2,9 +2,6 @@
 ###
   utils for node.js scripts, cake tasks, grunt tasks
 
-  TODO : dry up - this file is indentical between htdoc_ems and react-datum
-  maybe opensource separately as an NPM module?
-
 ###
 
 
