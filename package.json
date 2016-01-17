@@ -1,0 +1,24 @@
+{
+  "name": "bumble-util",
+  "version": "0.1.0",
+  "description": "Node utilities, mostly for scripts ... that proabably will not work with your code.",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt test",
+    "prepublish": "coffee -o lib/ src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/littlebee/bumble-util.git"
+  },
+  "author": "Bee Wilkerson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/littlebee/bumble-util/issues"
+  },
+  "homepage": "https://github.com/littlebee/bumble-util",
+  "dependencies": {
+    "moment": "^2.11.1",
+    "underscore": "^1.8.3"
+  }
+}
