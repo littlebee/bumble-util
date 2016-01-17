@@ -11,6 +11,7 @@ fs = require 'fs'
 _ = require 'underscore'
 moment = require 'moment'
 
+BStr = require 'bumble-strings'
 
 HOME_DIR = process.env.HOME
 
@@ -61,14 +62,25 @@ npmInstall = () ->
 installNodePackage = (packageName, options={}) ->
   options = _.defaults options,
     global: false
+    addFlags: ""     # specify additional flags like --save-dev
 
-  [flags, sudo] = if options.global then ['-g', 'sudo'] else ['', '']
+  cmd = ""
+  cmd += "sudo " if options.global
+  cmd += "npm install "
+  cmd += "-g " if options.global
+  cmd += options.addFlags
+  cmd += " " unless BStr.endsWith(options.addFlags, " ")
+  cmd += packageName
 
-  unless fs.existsSync("/usr/local/lib/node_modules/#{packageName}") ||
-         fs.existsSync("/opt/nodejs/current/lib/node_modules/#{packageName}")
+  packageExists = ( 
+    fs.existsSync("/usr/local/lib/node_modules/#{packageName}") ||
+    fs.existsSync("/opt/nodejs/current/lib/node_modules/#{packageName}") ||
+    fs.existsSync("./node_modules/#{packageName}")
+  )
+  unless packageExists
     if options.global
-      console.log 'you may be asked to enter your sudo password (and this may take a few seconds)'
-    systemCmd "#{sudo} npm install #{flags} #{packageName}"
+      console.log 'you may be asked to enter your sudo password'
+    systemCmd cmd
 
 
 openTerminalTab = (cdPath = './', cmd='')->

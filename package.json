@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "grunt test",
-    "prepublish": "coffee -o lib/ src/"
+    "prepublish": "build.sh"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,8 @@
   "dependencies": {
     "moment": "^2.11.1",
     "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "bumble-strings": "^0.1.4"
   }
 }
