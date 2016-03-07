@@ -1,6 +1,6 @@
 {
   "name": "bumble-util",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Node utilities, mostly for scripts ... that proabably will not work with your code.",
   "main": "index.js",
   "scripts": {
@@ -22,6 +22,5 @@
     "underscore": "^1.8.3",
     "bumble-strings": "^0.1.4"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
