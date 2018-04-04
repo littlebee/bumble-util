@@ -15,6 +15,11 @@ BStr = require 'bumble-strings'
 
 HOME_DIR = process.env.HOME
 
+###
+  Syncronously executes a system command with command and output echo to console.
+  
+  Returns the output of the command as a string.
+###
 systemCmd = (cmd, options={}) ->
   options = _.defaults options,
     failOnError: true
@@ -33,7 +38,10 @@ systemCmd = (cmd, options={}) ->
   return out.toString()
 
 
-
+###
+  Generic error handler that checks passed in error, from node fs functions for example, 
+  and if there is an error, send it to console.error() and exit this process.
+###
 handleError = (error) ->
   return unless error
   console.error(error)
@@ -41,21 +49,25 @@ handleError = (error) ->
 
 
 LAST_NPM_INSTALL_FILE = './.lastNpmInstall'
-# runs an `npm install` if we see that the package.json is newer than the last time called
-#   or if the node_modules directory doesn't exist
+###
+  runs an `npm install` if we see that the package.json is newer than the last time called
+  or if the node_modules directory doesn't exist
+###
 npmInstall = () ->
-  return unless fs.existsSync('package.json')
-  packageFileMtime = moment(fs.statSync('package.json').mtime)
+  return unless Fs.existsSync('package.json')
+  packageFileMtime = Moment(Fs.statSync('package.json').mtime)
 
-  try lastTimeStamp = moment(parseInt(fs.readFileSync(LAST_NPM_INSTALL_FILE)))
+  try lastTimeStamp = Moment(parseInt(Fs.readFileSync(LAST_NPM_INSTALL_FILE)))
   # console.log 'lastTimeStamp: ', lastTimeStamp
-  # console.log 'node_modules exists: ', fs.existsSync('node_modules')
+  # console.log 'node_modules exists: ', Fs.existsSync('node_modules')
   # console.log 'packageFileMtime: ', packageFileMtime
 
-  if !lastTimeStamp? || !fs.existsSync('node_modules') || packageFileMtime.isAfter(lastTimeStamp)
+  if !lastTimeStamp? || !Fs.existsSync('node_modules') || packageFileMtime.isAfter(lastTimeStamp)
     console.log 'running npm install (this may take a while the first time)'
     systemCmd 'npm install'
-    fs.writeFileSync(LAST_NPM_INSTALL_FILE, packageFileMtime.valueOf())
+    Fs.writeFileSync(LAST_NPM_INSTALL_FILE, packageFileMtime.valueOf())
+  else
+    console.log 'no newer changes to package.json'
 
 
 # only installs if not alread installed
@@ -82,7 +94,9 @@ installNodePackage = (packageName, options={}) ->
       console.log 'you may be asked to enter your sudo password'
     systemCmd cmd
 
-
+###
+  Open a terminal tab (ONLY WORKS ON iterm2 or terminal apps on OSX) 
+###
 openTerminalTab = (cdPath = './', cmd='')->
   cdPath = path.resolve(cdPath)
   console.log "opening terminal tab. maybe. to #{cdPath}. TERM_PROGRAM='#{process.env.TERM_PROGRAM}'"
