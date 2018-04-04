@@ -5,11 +5,11 @@
 ###
 
 
-child_process = require "child_process"
-path = require 'path'
-fs = require 'fs'
+ChildProcess = require "child_process"
+Path = require 'path'
+Fs = require 'fs'
 _ = require 'underscore'
-moment = require 'moment'
+Moment = require 'moment'
 
 BStr = require 'bumble-strings'
 
@@ -28,7 +28,7 @@ systemCmd = (cmd, options={}) ->
 
   console.log("$ " + cmd) if options.echo
   try
-    out = child_process.execSync(cmd)
+    out = ChildProcess.execSync(cmd)
     process.stdout.write(out) if options.showOutput
   catch e
     console.error e if options.showOutput
@@ -39,7 +39,7 @@ systemCmd = (cmd, options={}) ->
 
 
 ###
-  Generic error handler that checks passed in error, from node fs functions for example, 
+  Generic error handler that checks passed in error, from node Fs functions for example, 
   and if there is an error, send it to console.error() and exit this process.
 ###
 handleError = (error) ->
@@ -85,9 +85,9 @@ installNodePackage = (packageName, options={}) ->
   cmd += packageName
 
   packageExists = ( 
-    fs.existsSync("/usr/local/lib/node_modules/#{packageName}") ||
-    fs.existsSync("/opt/nodejs/current/lib/node_modules/#{packageName}") ||
-    fs.existsSync("./node_modules/#{packageName}")
+    Fs.existsSync("/usr/local/lib/node_modules/#{packageName}") ||
+    Fs.existsSync("/opt/nodejs/current/lib/node_modules/#{packageName}") ||
+    Fs.existsSync("./node_modules/#{packageName}")
   )
   unless packageExists
     if options.global
@@ -98,7 +98,7 @@ installNodePackage = (packageName, options={}) ->
   Open a terminal tab (ONLY WORKS ON iterm2 or terminal apps on OSX) 
 ###
 openTerminalTab = (cdPath = './', cmd='')->
-  cdPath = path.resolve(cdPath)
+  cdPath = Path.resolve(cdPath)
   console.log "opening terminal tab. maybe. to #{cdPath}. TERM_PROGRAM='#{process.env.TERM_PROGRAM}'"
   switch process.env.TERM_PROGRAM
     when 'iTerm.app'
