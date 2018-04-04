@@ -1,3 +1,9 @@
+## [0.3.1](https://github.com/littlebee/bumble-util.git/compare/0.3.0...0.3.1) (2018-04-3)
+
+
+### Other Commits
+* [b3ae09d](https://github.com/littlebee/bumble-util.git/commit/b3ae09d92d90c10289c72da865c2027edbe7117d) module instance vars should be upper camel case
+
 ## [0.3.0](https://github.com/littlebee/bumble-util.git/compare/0.2.1...0.3.0) (2018-04-3)
 
 
