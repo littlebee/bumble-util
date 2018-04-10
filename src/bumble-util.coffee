@@ -35,7 +35,7 @@ systemCmd = (cmd, options={}) ->
     if options.failOnError
       throw e
 
-  return out.toString()
+  return out?.toString() ? null
 
 
 ###
