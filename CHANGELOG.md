@@ -1,3 +1,9 @@
+## [0.3.2](https://github.com/littlebee/bumble-util.git/compare/0.3.1...0.3.2) (2018-04-10)
+
+
+### Other Commits
+* [c311302](https://github.com/littlebee/bumble-util.git/commit/c3113023f0c2904d727731d35420a73f5cf8d31a) guard against exception when output from systemCmd is null
+
 ## [0.3.1](https://github.com/littlebee/bumble-util.git/compare/0.3.0...0.3.1) (2018-04-3)
 
 
