@@ -1,6 +1,6 @@
 {
   "name": "bumble-util",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Node utilities, mostly for scripts ... that proabably will not work with your code.",
   "main": "index.js",
   "scripts": {
