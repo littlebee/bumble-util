@@ -1,3 +1,11 @@
+## [0.4.0](https://github.com/littlebee/bumble-util.git/compare/v0.3.2...v0.4.0) - (2018-06-23)
+
+### New Features
+* [ce62d25](https://github.com/littlebee/bumble-util.git/commit/ce62d259d734e35b78f2248fa576442c382f7eb7)  use exec from shelljs to see output as it happens
+
+### Other Commits
+* [898b428](https://github.com/littlebee/bumble-util.git/commit/898b4288453065cb5954a55edc0c77b52464300b) better? error output handling
+
 ## [0.3.2](https://github.com/littlebee/bumble-util.git/compare/0.3.1...0.3.2) (2018-04-10)
 
 
