@@ -1,3 +1,9 @@
+## [0.4.1](https://github.com/littlebee/bumble-util.git/compare/v0.4.0...v0.4.1) - (2018-06-23)
+minor bug fix release
+### Other Commits
+* [64b685f](https://github.com/littlebee/bumble-util.git/commit/64b685f127d4c3d4823f5e2feb09a40528653bd5) add publish config to specify npmjs org registry
+* [72b2514](https://github.com/littlebee/bumble-util.git/commit/72b2514787580d4adaa1c07448aef7d02bfa82d0) update prepublish scripts key in package.json
+
 ## [0.4.0](https://github.com/littlebee/bumble-util.git/compare/v0.3.2...v0.4.0) - (2018-06-23)
 
 ### New Features
