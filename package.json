@@ -11,6 +11,10 @@
     "type": "git",
     "url": "https://github.com/littlebee/bumble-util.git"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  
   "author": "Bee Wilkerson",
   "license": "MIT",
   "bugs": {
