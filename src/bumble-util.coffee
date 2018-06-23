@@ -26,25 +26,19 @@ systemCmd = (cmd, options={}) ->
     echo: true
     showOutput: true
 
-  console.log("$++ " + cmd) if options.echo
+  console.log("$ " + cmd) if options.echo
   try
-    out = Shell.exec(cmd)
-    if options.showOutput
-      console.error(out.stderr) if out.stderr? && out.stderr != '' 
-      console.log(out.stdout) if out.stdout? && out.stdout != '' 
+    out = Shell.exec(cmd, {silent: !options.showOutput})
     if out.code != 0
       if options.showOutput
         console.error("command exited with nonzero exit code (#{out.code})")
       if options.failOnError
-        throw new Error(out.code) 
+        throw out
   catch e
-    if options.showOutput
-      console.log(e.stdout?.toString())
-      console.error(e.stderr?.toString())     
     if options.failOnError
-      throw new Error(e)
+      throw new Error('systemCmd fail')
 
-  return out.stdout ? null
+  return out?.stdout ? null
 
 
 ###
