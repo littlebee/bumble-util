@@ -18,9 +18,10 @@
   },
   "homepage": "https://github.com/littlebee/bumble-util",
   "dependencies": {
+    "bumble-strings": "0.5.1",
     "moment": "2.22.0",
-    "underscore": "1.8.3",
-    "bumble-strings": "0.5.1"
+    "shelljs": "^0.8.2",
+    "underscore": "1.8.3"
   },
   "devDependencies": {}
 }

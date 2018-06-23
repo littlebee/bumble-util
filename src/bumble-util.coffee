@@ -5,7 +5,7 @@
 ###
 
 
-ChildProcess = require "child_process"
+Shell = require "shelljs"
 Path = require 'path'
 Fs = require 'fs'
 _ = require 'underscore'
@@ -26,16 +26,25 @@ systemCmd = (cmd, options={}) ->
     echo: true
     showOutput: true
 
-  console.log("$ " + cmd) if options.echo
+  console.log("$++ " + cmd) if options.echo
   try
-    out = ChildProcess.execSync(cmd)
-    process.stdout.write(out) if options.showOutput
+    out = Shell.exec(cmd)
+    if options.showOutput
+      console.error(out.stderr) if out.stderr? && out.stderr != '' 
+      console.log(out.stdout) if out.stdout? && out.stdout != '' 
+    if out.code != 0
+      if options.showOutput
+        console.error("command exited with nonzero exit code (#{out.code})")
+      if options.failOnError
+        throw new Error(out.code) 
   catch e
-    console.error e if options.showOutput
+    if options.showOutput
+      console.log(e.stdout?.toString())
+      console.error(e.stderr?.toString())     
     if options.failOnError
-      throw e
+      throw new Error(e)
 
-  return out?.toString() ? null
+  return out.stdout ? null
 
 
 ###
